@@ -1,0 +1,16 @@
+[
+    {
+        "user": "Gianna Higgins",
+        "image": "../assets/wine.jpg",
+        "community": "arizona",
+        "timestamp": "2023-05-09T04:15:12.356Z",
+        "description": "EVENT! Wine Night on December 13th. Location is at my house on 34 Heavelton Avenue, Phoenix Arizona.\n\nPlease RSVP to the link below!..."
+    },
+    {
+        "user": "Mena Hassan",
+        "image": "",
+        "community": "your",
+        "timestamp": "2023-05-09T02:15:12.356Z",
+        "description": "EVENT! Wine Night on December 13th. Location is at my house on 34 Heavelton Avenue, Phoenix Arizona."
+    }
+]
