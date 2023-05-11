@@ -1,10 +1,24 @@
-import { StyleSheet, Text, Image, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 
 export default function PostCard({ postInfo }) {
+  // set image dimensions
+  const [dimensions, setDimensions] = useState([]);
+
+  // get mobile window dimensions
+  const win = Dimensions.get("window");
+
+  if (postInfo.image !== "") {
+    Image.getSize(postInfo.image, (width, height) => {
+      setDimensions([width, height]);
+    });
+  }
+
   var dateDifference =
     new Date().getTime() - new Date(postInfo.timestamp).getTime();
   var daysAgo = Math.floor(dateDifference / (1000 * 60 * 60 * 24));
   var hoursAgo = Math.floor(dateDifference / (1000 * 60 * 60));
+
   return (
     <View style={styles.card}>
       <Text style={styles.text}>
@@ -15,9 +29,22 @@ export default function PostCard({ postInfo }) {
         <></>
       ) : (
         <Image
-          style={styles.image}
-          source={require("../assets/wine.jpg")}
-        ></Image>
+          style={
+            dimensions == []
+              ? {
+                  margin: 0,
+                  padding: 0,
+                  width: win.width - 40,
+                }
+              : {
+                  margin: 0,
+                  padding: 0,
+                  width: win.width - 40,
+                  height: dimensions[1] * ((win.width - 40)/dimensions[0]),
+                }
+          }
+          source={{ uri: postInfo.image }}
+        />
       )}
       <Text style={styles.text}>{postInfo.user}</Text>
       <Text style={styles.text}>
@@ -33,16 +60,12 @@ export default function PostCard({ postInfo }) {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: "#EBEBEB",
-    height: 500,
+    flexDirection: "column",
+    flex: 1,
     borderRadius: 9,
     marginTop: 20,
     marginHorizontal: 20,
-  },
-  image: {
-    flex: 1,
-    width: "100%",
     height: "100%",
-    resizeMode: "contain",
   },
   text: {
     padding: 5,
