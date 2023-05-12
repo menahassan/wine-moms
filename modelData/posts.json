@@ -10,11 +10,20 @@
     },
     {
         "user": "Mena Hassan",
-        "image": "",
+        "image": "https://cdn.shareably.net/wp-content/uploads/2019/05/17102147/Screen-Shot-2019-05-17-at-10.21.12-AM.png",
         "community": "your",
         "timestamp": "2023-05-09T02:15:12.356Z",
-        "description": "EVENT! Wine Night on December 13th. Location is at my house on 34 Heavelton Avenue, Phoenix Arizona.",
+        "description": "",
         "likes" : ["1", "2", "3", "4"],
         "comments" : ["1", "2", "3", "4"]
+    },
+    {
+        "user": "Jane Doe",
+        "image": "",
+        "community": "chef",
+        "timestamp": "2023-05-11T02:15:12.356Z",
+        "description": "Hello! Looking for quick healthy recipes.",
+        "likes" : ["1", "2"],
+        "comments" : ["1", "2", "3", "4", "5", "6"]
     }
 ]
