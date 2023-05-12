@@ -1,5 +1,9 @@
 [
     {
-        "id" : "1"
+        "id" : "1",
+        "name" : "Gianna Higgins",
+        "profile_photo": "",
+        "cover_photo": "",
+        "communities": ["arizona", "your"]
     }
 ]
