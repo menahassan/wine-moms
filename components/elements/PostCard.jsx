@@ -46,14 +46,16 @@ export default function PostCard({ postInfo }) {
           }
           source={{ uri: postInfo.image }}
         />
-        )}
+      )}
       <View style={styles.row}>
-      <Text style={styles.text}>{postInfo.user}</Text>
-      <Text style={styles.timestamp}>
-        {daysAgo == 0
-          ? `Posted ${hoursAgo} hours ago`
-          : `Posted ${daysAgo} days ago`}
-      </Text>
+        <Text style={styles.text}>
+          {postInfo.anonymous ? "Anonymous" : postInfo.user}
+        </Text>
+        <Text style={styles.timestamp}>
+          {daysAgo == 0
+            ? `Posted ${hoursAgo} hours ago`
+            : `Posted ${daysAgo} days ago`}
+        </Text>
       </View>
       <Text style={styles.text}>{postInfo.description}</Text>
     </View>
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     flex: 2,
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   timestamp: {
     fontSize: 10,
