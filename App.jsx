@@ -4,13 +4,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Icon from "react-native-vector-icons/Ionicons";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import HomePage from "./components/HomePage";
-import UserProfile from "./components/UserProfile";
-import Explore from "./components/ExplorePage";
-import Chat from "./components/Chat";
-import CreatePost from "./components/CreatePost";
+import HomePage from "./components/pages/HomePage";
+import UserProfile from "./components/pages/UserProfile";
+import Explore from "./components/pages/ExplorePage";
+import Chat from "./components/pages/Chat";
+import CreatePost from "./components/pages/CreatePost";
 
 const Tab = createMaterialBottomTabNavigator();
 
