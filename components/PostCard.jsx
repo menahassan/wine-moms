@@ -35,6 +35,7 @@ export default function PostCard({ postInfo }) {
                   margin: 0,
                   padding: 0,
                   width: win.width - 40,
+                  height: 0,
                 }
               : {
                   margin: 0,
