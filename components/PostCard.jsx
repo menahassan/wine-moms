@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 
 export default function PostCard({ postInfo }) {
@@ -66,9 +66,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginHorizontal: 20,
     height: "100%",
+    paddingVertical: 8,
   },
   text: {
-    padding: 5,
+    fontSize: 13,
+    padding: 6,
+    paddingHorizontal: 14,
   },
   boldText: {
     fontWeight: 600,

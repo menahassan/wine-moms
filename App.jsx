@@ -3,9 +3,13 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomePage from "./components/HomePage";
 import UserProfile from "./components/UserProfile";
+import Explore from './components/ExplorePage';
+import Chat from './components/Chat';
+import CreatePost from './components/CreatePost';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -20,6 +24,33 @@ export default function App() {
             options={() => ({
               tabBarIcon: ({ color }) => (
                 <MaterialIcons name="home" color={color} size={26} />
+              ),
+            })}
+          />
+          <Tab.Screen
+            name="Explore"
+            component={Explore}
+            options={() => ({
+              tabBarIcon: ({ color }) => (
+                <MaterialIcons name="search" color={color} size={26} />
+              ),
+            })}
+          />
+          <Tab.Screen
+            name="Create"
+            component={CreatePost}
+            options={() => ({
+              tabBarIcon: ({ color }) => (
+                <MaterialIcons name="add-box" color={color} size={26} />
+              ),
+            })}
+          />
+          <Tab.Screen
+            name="Chat"
+            component={Chat}
+            options={() => ({
+              tabBarIcon: ({ color }) => (
+                <Icon name="chatbubbles" size={26} color={color} />
               ),
             })}
           />

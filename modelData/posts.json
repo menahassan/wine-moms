@@ -4,13 +4,17 @@
         "image": "https://www.foodandwine.com/thmb/srEHECIjjqIsJfKkhy-oiwcoZ4I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Wine-Guide-Beaujolais-FT-BLOG0722-2000-7f1cac81f5044d3cbfeac708b66c4bea.jpg",
         "community": "arizona",
         "timestamp": "2023-05-09T04:15:12.356Z",
-        "description": "EVENT! Wine Night on December 13th. Location is at my house on 34 Heavelton Avenue, Phoenix Arizona.\n\nPlease RSVP to the link below!..."
+        "description": "EVENT! Wine Night on December 13th. Location is at my house on 34 Heavelton Avenue, Phoenix Arizona.\n\nPlease RSVP to the link below!...",
+        "likes" : ["1", "2", "3"],
+        "comments" : ["1", "2", "3", "4", "5"]
     },
     {
         "user": "Mena Hassan",
         "image": "",
         "community": "your",
         "timestamp": "2023-05-09T02:15:12.356Z",
-        "description": "EVENT! Wine Night on December 13th. Location is at my house on 34 Heavelton Avenue, Phoenix Arizona."
+        "description": "EVENT! Wine Night on December 13th. Location is at my house on 34 Heavelton Avenue, Phoenix Arizona.",
+        "likes" : ["1", "2", "3", "4"],
+        "comments" : ["1", "2", "3", "4"]
     }
 ]
