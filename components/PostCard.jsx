@@ -40,7 +40,7 @@ export default function PostCard({ postInfo }) {
                   margin: 0,
                   padding: 0,
                   width: win.width - 40,
-                  height: dimensions[1] * ((win.width - 40)/dimensions[0]),
+                  height: dimensions[1] * ((win.width - 40) / dimensions[0]),
                 }
           }
           source={{ uri: postInfo.image }}
