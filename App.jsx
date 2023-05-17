@@ -10,12 +10,19 @@ import UserProfile from "./components/pages/UserProfile";
 import Explore from "./components/pages/ExplorePage";
 import Chat from "./components/pages/Chat";
 import CreatePost from "./components/pages/CreatePost";
+import LoginPage from "./components/pages/LoginPage";
 
 const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
+  const loggedIn = true;
+
   return (
     <SafeAreaProvider>
+      {!loggedIn ? (
+         // Render LoginPage if not logged in
+         <LoginPage />
+      ) : (
       <NavigationContainer>
         <Tab.Navigator
           barStyle={{ backgroundColor: "#845780" }}
@@ -68,6 +75,7 @@ export default function App() {
           />
         </Tab.Navigator>
       </NavigationContainer>
+      )}
     </SafeAreaProvider>
   );
 }

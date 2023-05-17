@@ -47,9 +47,9 @@ export default function PostCard({ postInfo }) {
           }
           source={{ uri: postInfo.image }}
         />
-      )}
+        )}
       <View style={styles.row}>
-        <Text style={styles.text}>
+        <Text style={styles.profile_pic}>
           {postInfo.anonymous ? "Anonymous" : postInfo.user}
         </Text>
         <Text style={styles.timestamp}>
@@ -93,6 +93,12 @@ const styles = StyleSheet.create({
     fontSize: 10,
     padding: 6,
     paddingHorizontal: 14,
+  },
+  profile_pic: {
+    fontSize: 13,
+    padding: 6,
+    paddingHorizontal: 14,
+    fontWeight: 'bold',
   },
   text: {
     fontSize: 13,
