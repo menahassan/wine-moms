@@ -11,17 +11,18 @@ import Explore from "./components/pages/ExplorePage";
 import Chat from "./components/pages/Chat";
 import CreatePost from "./components/pages/CreatePost";
 import LoginPage from "./components/pages/LoginPage";
+import { useState } from "react";
 
 const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
-  const loggedIn = true;
+  const [loggedInUser, setLoggedInUser] = useState("");
 
   return (
     <SafeAreaProvider>
-      {!loggedIn ? (
+      {!loggedInUser ? (
          // Render LoginPage if not logged in
-         <LoginPage />
+         <LoginPage setLoggedInUser={setLoggedInUser}/>
       ) : (
       <NavigationContainer>
         <Tab.Navigator

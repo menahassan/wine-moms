@@ -3,13 +3,14 @@ import { SafeAreaView, StyleSheet, TextInput, Text, Image} from "react-native";
 import EnclosedButton from "../elements/EnclosedButton";
 import { useState } from "react";
 
-const LoginPage = () => {
+const LoginPage = ({setLoggedInUser}) => {
   const [username, onChangeUsername] = React.useState("");
   const [password, onChangePassword] = React.useState("");
 
   const handleLogin = () => {
-    // Implement login logic here, e.g., integrate with backend or check credentials
-    console.log('Logging in:', username, password);
+    // Eventuall have invalid login logic
+    console.log(username);
+    setLoggedInUser(username);
   };
 
   return (

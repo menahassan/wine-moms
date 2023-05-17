@@ -26,7 +26,7 @@ export default function PostCard({ postInfo }) {
         {postInfo.community}
         <Text style={styles.boldText}>moms</Text>
       </Text>
-      {postInfo.image == "" ? (
+      {/*postInfo.image == "" ? (
         <></>
       ) : (
         <Image
@@ -47,7 +47,7 @@ export default function PostCard({ postInfo }) {
           }
           source={{ uri: postInfo.image }}
         />
-        )}
+        )*/}
       <View style={styles.row}>
         <Text style={styles.profile_pic}>
           {postInfo.anonymous ? "Anonymous" : postInfo.user}
