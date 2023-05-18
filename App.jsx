@@ -1,15 +1,19 @@
-import "react-native-gesture-handler";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import Icon from "react-native-vector-icons/Ionicons";
 
+import HomePage from "./components/pages/HomePage";
+import UserProfile from "./components/pages/UserProfile";
+import Explore from "./components/pages/ExplorePage";
+import Chat from "./components/pages/Chat";
+import CreatePost from "./components/pages/CreatePost";
 import LoginPage from "./components/pages/LoginPage";
-import PostDetails from "./components/pages/PostDetails";
-import BottomTabNavigator from "./components/elements/BottomTabNavigator";
 import { useState } from "react";
 
-const Stack = createStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
   const [loggedInUser, setLoggedInUser] = useState("");
@@ -17,13 +21,13 @@ export default function App() {
   return (
     <SafeAreaProvider>
       {!loggedInUser ? (
-        // Render LoginPage if not logged in
-        <LoginPage setLoggedInUser={setLoggedInUser} />
+         // Render LoginPage if not logged in
+         <LoginPage setLoggedInUser={setLoggedInUser}/>
       ) : (
       <NavigationContainer>
         <Tab.Navigator
           barStyle={{ backgroundColor: "#845780" }}
-          labeled = {false}
+          labeled = {false} //testing github ignore this
         >
           <Tab.Screen
             name="Feed"

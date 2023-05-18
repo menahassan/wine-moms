@@ -1,11 +1,9 @@
-import { Text, ScrollView } from "react-native";
-import TopBar from "../elements/TopBar";
+import { Text, View } from "react-native";
 
-export default function Chat({setLoggedInUser}) {
+export default function Chat() {
   return (
-    <ScrollView>
-      <TopBar setLoggedInUser={setLoggedInUser}></TopBar>
+    <View>
       <Text>Chat Page</Text>
-    </ScrollView>
+    </View>
   );
 }
