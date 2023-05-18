@@ -1,9 +1,11 @@
-import { Text, View } from "react-native";
+import { Text, ScrollView } from "react-native";
+import TopBar from "../elements/TopBar";
 
-export default function CreatePost() {
+export default function CreatePost({setLoggedInUser}) {
   return (
-    <View>
+    <ScrollView>
+      <TopBar setLoggedInUser={setLoggedInUser}></TopBar>
       <Text>CreatePost</Text>
-    </View>
+    </ScrollView>
   );
 }
