@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import LoginPage from "./components/pages/LoginPage";
+import RegisterPage from "./components/pages/RegisterPage";
 import PostDetails from "./components/pages/PostDetails";
 import BottomTabNavigator from "./components/elements/BottomTabNavigator";
 import { useState } from "react";
@@ -17,16 +18,20 @@ export default function App() {
   return (
     <SafeAreaProvider>
       {!loggedInUser ? (
-        // Render LoginPage if not logged in
-        <LoginPage setLoggedInUser={setLoggedInUser} />
-      ) : (
-        <NavigationContainer screenProps={{ "setLoggedInUser": setLoggedInUser }}>
+        <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen
-              name="Main"
-              
-              options={{ headerShown: false }}
-            >
+            <Stack.Screen name="Login" options={{ headerShown: false }}>
+            {(props) => <LoginPage {...props} setLoggedInUser={setLoggedInUser} />}
+            </Stack.Screen>
+            <Stack.Screen name="Register" options={{ headerShown: false }}>
+            {() => <RegisterPage setLoggedInUser={setLoggedInUser} />}
+            </Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+      ) : (
+        <NavigationContainer screenProps={{ setLoggedInUser: setLoggedInUser }}>
+          <Stack.Navigator>
+            <Stack.Screen name="Main" options={{ headerShown: false }}>
               {() => <BottomTabNavigator setLoggedInUser={setLoggedInUser} />}
             </Stack.Screen>
             <Stack.Screen
