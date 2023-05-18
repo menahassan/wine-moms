@@ -1,15 +1,24 @@
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import EnclosedButton from "./EnclosedButton";
+import HomePage from "../pages/HomePage";
 
-export default function TopBar({ setLoggedInUser }) {
+export default function TopBar({ setLoggedInUser, icon, navigation }) {
   const handleLogout = () => {
     setLoggedInUser("");
   };
 
+  const handleIconPress = (icon) => {
+    if (icon == "arrow-back-ios") {
+      navigation.goBack();
+    }
+  };
+
   return (
     <View style={styles.topContainer}>
-      <MaterialIcons name="menu" color={"#ffffff"} size={30} />
+      <TouchableOpacity onPress={() => handleIconPress(icon || "menu")}>
+        <MaterialIcons name={icon || "menu"} color={"#ffffff"} size={30} />
+      </TouchableOpacity>
       <Text style={styles.appTitle}>
         wine
         <Text style={[styles.appTitle, styles.boldText]}>moms</Text>
@@ -43,14 +52,13 @@ const styles = StyleSheet.create({
   appTitle: {
     color: "#ffffff",
     fontSize: 22,
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     top: 50,
-    textAlign: 'center',
+    textAlign: "center",
   },
   boldText: {
     fontWeight: 600,
   },
 });
-
