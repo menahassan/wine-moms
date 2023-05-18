@@ -6,7 +6,7 @@ export default function CommunityPage({setLoggedInUser}) {
     <ScrollView>
       <TopBar setLoggedInUser={setLoggedInUser}></TopBar>
 
-      <Image style = {styles.image} source = {require('../../assets/wine.jpg')}/>
+      <Image style = {styles.image} source = {require('../../assets/arizona_mom.jpeg')}/>
       <View style ={styles.card}>
       <Text style={styles.communityTitle}>
         arizona
