@@ -27,7 +27,7 @@ export default function App() {
       <NavigationContainer>
         <Tab.Navigator
           barStyle={{ backgroundColor: "#845780" }}
-          labeled = {false}
+          labeled = {false} //testing github ignore this
         >
           <Tab.Screen
             name="Feed"
