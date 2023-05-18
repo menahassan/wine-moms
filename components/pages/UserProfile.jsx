@@ -1,9 +1,11 @@
-import { Text, View } from "react-native";
+import { Text, ScrollView } from "react-native";
+import TopBar from "../elements/TopBar";
 
-export default function UserProfile() {
+export default function UserProfile({setLoggedInUser}) {
   return (
-    <View>
+    <ScrollView>
+      <TopBar setLoggedInUser={setLoggedInUser}></TopBar>
       <Text>User Profile</Text>
-    </View>
+    </ScrollView>
   );
 }

@@ -1,14 +1,17 @@
 import React from "react";
 import {
   StyleSheet,
-  Button,
+  TouchableOpacity,
   View,
+  Text,
 } from "react-native";
 
 const EnclosedButton = ({title, onPress}) => {
   return (
     <View style={styles.buttonContainer}>
-      <Button title={title} onPress={onPress} color="white" fontWeight="bold"/>
+      <TouchableOpacity title={''} onPress={onPress}>
+      <Text style={styles.buttonText}>{title}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -17,9 +20,15 @@ const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: "#694066",
     borderRadius: 7,
-    padding: 2,
-    margin: 10,
+    paddingTop: 7,
+    paddingBottom: 7,
+    paddingRight: 10,
+    paddingLeft:10,
+    margin: 5,
   },
+  buttonText: {
+    color: "white",
+  }
 });
 
 export default EnclosedButton;

@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import PostDetails from "../pages/PostDetails";
 
-export default function PostCard({ postInfo }) {
+export default function PostCard({ navigation, postInfo }) {
   // set image dimensions
   const [dimensions, setDimensions] = useState([]);
 
@@ -20,13 +28,18 @@ export default function PostCard({ postInfo }) {
   var daysAgo = Math.floor(dateDifference / (1000 * 60 * 60 * 24));
   var hoursAgo = Math.floor(dateDifference / (1000 * 60 * 60));
 
+  const handlePostDetailsPress = () => {
+    navigation.navigate("PostDetails");
+  };
+
   return (
     <View style={styles.card}>
       <Text style={styles.text}>
         {postInfo.community}
         <Text style={styles.boldText}>moms</Text>
       </Text>
-      {/*postInfo.image == "" ? (
+      <TouchableOpacity onPress={handlePostDetailsPress}>
+        {/*postInfo.image == "" ? (
         <></>
       ) : (
         <Image
@@ -48,22 +61,32 @@ export default function PostCard({ postInfo }) {
           source={{ uri: postInfo.image }}
         />
         )*/}
-      <View style={styles.row}>
-        <Text style={styles.profile_pic}>
-          {postInfo.anonymous ? "Anonymous" : postInfo.user}
-        </Text>
-        <Text style={styles.timestamp}>
-          {daysAgo == 0
-            ? `Posted ${hoursAgo} hours ago`
-            : `Posted ${daysAgo} days ago`}
-        </Text>
-      </View>
-      <Text style={styles.text}>{postInfo.description}</Text>
-      <View style={styles.likeBar}>
-        <MaterialIcons style = {styles.heartSpacing} name="favorite" color={"#ff4747"} size={22} />
-        <Text style={[styles.text, styles.likeSpacing]}>{`${postInfo.likes.length} likes`}</Text>
-        <Text style={[styles.text, styles.commentSpacing]}>{`${postInfo.comments.length} comments`}</Text>
-      </View>
+        <View style={styles.row}>
+          <Text style={styles.profile_pic}>
+            {postInfo.anonymous ? "Anonymous" : postInfo.user}
+          </Text>
+          <Text style={styles.timestamp}>
+            {daysAgo == 0
+              ? `Posted ${hoursAgo} hours ago`
+              : `Posted ${daysAgo} days ago`}
+          </Text>
+        </View>
+        <Text style={styles.text}>{postInfo.description}</Text>
+        <View style={styles.likeBar}>
+          <MaterialIcons
+            style={styles.heartSpacing}
+            name="favorite"
+            color={"#ff4747"}
+            size={22}
+          />
+          <Text
+            style={[styles.text, styles.likeSpacing]}
+          >{`${postInfo.likes.length} likes`}</Text>
+          <Text
+            style={[styles.text, styles.commentSpacing]}
+          >{`${postInfo.comments.length} comments`}</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -87,7 +110,7 @@ const styles = StyleSheet.create({
   likeBar: {
     flexDirection: "row",
     flex: 3,
-    backgroundColor: "#DFD6DE"
+    backgroundColor: "#DFD6DE",
   },
   timestamp: {
     fontSize: 10,
@@ -98,7 +121,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     padding: 6,
     paddingHorizontal: 14,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   text: {
     fontSize: 13,
@@ -107,7 +130,7 @@ const styles = StyleSheet.create({
   },
   heartSpacing: {
     paddingLeft: 14,
-    paddingTop: 3
+    paddingTop: 3,
   },
   likeSpacing: {
     paddingLeft: 4,
@@ -117,7 +140,7 @@ const styles = StyleSheet.create({
   commentSpacing: {
     paddingLeft: 4,
     paddingRight: 0,
-    color: "#898989"
+    color: "#898989",
   },
   boldText: {
     fontWeight: 600,
