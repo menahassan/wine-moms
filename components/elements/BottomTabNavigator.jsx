@@ -8,6 +8,7 @@ import UserProfile from "../pages/UserProfile";
 import Explore from "../pages/ExplorePage";
 import Chat from "../pages/Chat";
 import CreatePost from "../pages/CreatePost";
+import CommunityPage from "../pages/CommunityPage";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -34,7 +35,7 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
           ),
         })}
       >
-        {() => <Explore setLoggedInUser={setLoggedInUser} />}
+        {() => <CommunityPage setLoggedInUser={setLoggedInUser} />}
       </Tab.Screen>
       <Tab.Screen
         name="Create"
