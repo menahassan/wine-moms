@@ -4,10 +4,10 @@ import TopBar from "../elements/TopBar"
 
 const fakePosts = require("../../modelData/posts.json");
 
-export default function HomePage() {
+export default function HomePage({setLoggedInUser}) {
   return (
     <ScrollView>
-      <TopBar></TopBar>
+      <TopBar setLoggedInUser={setLoggedInUser}></TopBar>
       <View>
         {fakePosts.map((post, index) => {
           return (

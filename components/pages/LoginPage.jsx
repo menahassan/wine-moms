@@ -2,6 +2,7 @@ import React from "react";
 import { SafeAreaView, StyleSheet, TextInput, Text, Image} from "react-native";
 import EnclosedButton from "../elements/EnclosedButton";
 import { useState } from "react";
+import TopBar from "../elements/TopBar";
 
 const LoginPage = ({setLoggedInUser}) => {
   const [username, onChangeUsername] = React.useState("");
@@ -9,7 +10,6 @@ const LoginPage = ({setLoggedInUser}) => {
 
   const handleLogin = () => {
     // Eventuall have invalid login logic
-    console.log(username);
     setLoggedInUser(username);
   };
 

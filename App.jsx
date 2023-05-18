@@ -30,50 +30,55 @@ export default function App() {
           labeled = {false}
         >
           <Tab.Screen
-            name="Feed"
-            component={HomePage}
+            name="FYP"
             options={() => ({
               tabBarIcon: ({ color }) => (
                 <MaterialIcons name="home" color={color} size={26} />
               ),
             })}
-          />
+          >
+           {() => <HomePage setLoggedInUser={setLoggedInUser} />}
+           </Tab.Screen>
           <Tab.Screen
             name="Explore"
-            component={Explore}
             options={() => ({
               tabBarIcon: ({ color }) => (
                 <MaterialIcons name="search" color={color} size={26} />
               ),
             })}
-          />
+          >
+            {() => <Explore setLoggedInUser={setLoggedInUser} />}
+          </Tab.Screen>
           <Tab.Screen
             name="Create"
-            component={CreatePost}
             options={() => ({
               tabBarIcon: ({ color }) => (
                 <MaterialIcons name="add-box" color={color} size={26} />
               ),
             })}
-          />
+          >
+             {() => <CreatePost setLoggedInUser={setLoggedInUser} />}
+          </Tab.Screen>
           <Tab.Screen
             name="Chat"
-            component={Chat}
             options={() => ({
               tabBarIcon: ({ color }) => (
                 <Icon name="chatbubbles" size={26} color={color} />
               ),
             })}
-          />
+          >
+             {() => <Chat setLoggedInUser={setLoggedInUser} />}
+          </Tab.Screen>
           <Tab.Screen
             name="User Profile"
-            component={UserProfile}
             options={() => ({
               tabBarIcon: ({ color }) => (
                 <MaterialIcons name="person" color={color} size={26} />
               ),
             })}
-          />
+          >
+             {() => <UserProfile setLoggedInUser={setLoggedInUser} />}
+          </Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
       )}

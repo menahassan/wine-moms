@@ -1,9 +1,11 @@
-import { Text, View } from "react-native";
+import { Text, ScrollView } from "react-native";
+import TopBar from "../elements/TopBar";
 
-export default function Explore() {
+export default function Explore({setLoggedInUser}) {
   return (
-    <View>
+    <ScrollView>
+      <TopBar setLoggedInUser={setLoggedInUser}></TopBar>
       <Text>Explore Page</Text>
-    </View>
+    </ScrollView>
   );
 }
