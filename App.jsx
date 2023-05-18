@@ -20,13 +20,15 @@ export default function App() {
         // Render LoginPage if not logged in
         <LoginPage setLoggedInUser={setLoggedInUser} />
       ) : (
-        <NavigationContainer screenProps={{ setLoggedInUser }}>
+        <NavigationContainer screenProps={{ "setLoggedInUser": setLoggedInUser }}>
           <Stack.Navigator>
             <Stack.Screen
               name="Main"
-              component={BottomTabNavigator}
+              
               options={{ headerShown: false }}
-            />
+            >
+              {() => <BottomTabNavigator setLoggedInUser={setLoggedInUser} />}
+            </Stack.Screen>
             <Stack.Screen
               name="PostDetails"
               component={PostDetails}
