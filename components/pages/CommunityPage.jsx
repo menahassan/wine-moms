@@ -48,21 +48,18 @@ const styles = StyleSheet.create({
     communityTitle: {
         color: "#000000",
         fontSize: 25,
-        position: "absolute",
         left: 40,
-        right: 0,
-        top: 10,
+        marginTop: 10,
       },
       boldText: {
         fontWeight: 600,
-    },
-    description:{
+      },
+      description:{
         color: "#000000",
         fontSize: 15,
-        position: "absolute",
         left: 40,
-        right: 0,
-        top: 40,
+        marginRight: 20,
+        marginTop: 10,
 
     },
 });
