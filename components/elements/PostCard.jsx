@@ -35,8 +35,10 @@ export default function PostCard({ navigation, postInfo }) {
   return (
     <View style={styles.card}>
       <Text style={styles.text}>
+      <Text style={styles.boldText}>
         {postInfo.community}
-        <Text style={styles.boldText}>moms</Text>
+        </Text>
+        moms
       </Text>
       <TouchableOpacity onPress={handlePostDetailsPress}>
         {/*postInfo.image == "" ? (

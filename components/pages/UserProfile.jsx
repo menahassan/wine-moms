@@ -1,10 +1,18 @@
 import React from "react";
-import { Text, ScrollView, Image, StyleSheet, View, TouchableOpacity } from "react-native";
+import {
+  Text,
+  ScrollView,
+  Image,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import TopBar from "../elements/TopBar";
+import CommunityButton from "../elements/CommunityButton";
 
 const user = require("../../modelData/users.json")[0];
 
-export default function UserProfile({ setLoggedInUser }) {
+export default function UserProfile({ navigation, setLoggedInUser }) {
   const handleEditProfile = () => {
     // Eventually have valid
     console.log("handle edit profile");
@@ -30,6 +38,20 @@ export default function UserProfile({ setLoggedInUser }) {
           <TouchableOpacity title={""} onPress={handleEditProfile}>
             <Text style={styles.buttonText}>Edit Profile</Text>
           </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.communitiesContainer}>
+        <Text style={styles.header}>Communities</Text>
+        <View style={styles.row}>
+          {user.communities.map((title, index) => {
+            return (
+              <CommunityButton
+                key={index}
+                title={title}
+                navigation={navigation}
+              ></CommunityButton>
+            );
+          })}
         </View>
       </View>
     </ScrollView>
@@ -89,6 +111,18 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 18,
-    fontWeight: 600
+    fontWeight: 600,
+  },
+  communitiesContainer: {
+    marginTop: 20,
+    paddingHorizontal: 20,
+  },
+  header: {
+    fontSize: 25,
+    fontWeight: 500,
+  },
+  row: {
+    flexDirection: "row",
+    flex: 2,
   }
 });

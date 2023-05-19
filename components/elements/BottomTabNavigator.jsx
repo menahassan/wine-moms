@@ -93,7 +93,7 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
           ),
         })}
       >
-        {() => <UserProfile setLoggedInUser={setLoggedInUser} />}
+        {() => <UserProfile navigation={navigation} setLoggedInUser={setLoggedInUser} />}
       </Tab.Screen>
     </Tab.Navigator>
   );
