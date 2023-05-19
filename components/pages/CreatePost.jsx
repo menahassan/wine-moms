@@ -36,9 +36,12 @@ export default function CreatePost({ navigation, setLoggedInUser }) {
         <EnclosedButton title="Post" onPress={handlePost}></EnclosedButton>
       </View>
 
-      <View style = {styles.switchView}>
-        <Switch/>
-      </View>
+      
+
+        <View style = {styles.switchView}>
+          <Switch/>
+        </View>
+      
 
       </KeyboardAwareScrollView>
   );
@@ -96,6 +99,16 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     marginRight: 20,
-  }
+    marginLeft: 10,
+    backgroundColor: '#D3D3D3',
+    height: 40,
+    width: '95%',
+    padding: 5,
+    borderRadius: 8
+  },
+  SwitchTitle:{
+    fontSize: 17,
+    color: '#7f7f7f',
+  },
 });
 
