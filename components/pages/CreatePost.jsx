@@ -5,6 +5,7 @@ import { useState} from "react";
 import EnclosedButton from "../elements/EnclosedButton";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DropdownComponent from '../elements/DropdownComponent';
+import ToggleSwitch from '../elements/ToggleSwitch'
 
 export default function CreatePost({ navigation, setLoggedInUser }) {
   const [title, onChangeTitle] = React.useState("");
@@ -28,21 +29,17 @@ export default function CreatePost({ navigation, setLoggedInUser }) {
           onChangeText={onChangeDescription}
           placeholder="Write Text Here"
           multiline={true}
-        numberOfLines={10}
-        textAlignVertical="top"
+          numberOfLines={10}
+          textAlignVertical="top"
           value={description}
         />
       <View style={styles.button}>
         <EnclosedButton title="Post" onPress={handlePost}></EnclosedButton>
       </View>
 
-      
-
-        <View style = {styles.switchView}>
-          <Switch/>
-        </View>
-      
-
+      <View style = {{alignItems: 'center', justifyContent: 'center'}}>
+        <ToggleSwitch /> 
+      </View>
       </KeyboardAwareScrollView>
   );
 }
@@ -93,22 +90,6 @@ const styles = StyleSheet.create({
     margin: 10,
     marginLeft: "auto",
     top: 100,
-  },
-  switchView: {
-    flex: 1, 
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
-    marginRight: 20,
-    marginLeft: 10,
-    backgroundColor: '#D3D3D3',
-    height: 40,
-    width: '95%',
-    padding: 5,
-    borderRadius: 8
-  },
-  SwitchTitle:{
-    fontSize: 17,
-    color: '#7f7f7f',
-  },
+  }
 });
 
