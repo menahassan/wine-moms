@@ -1,7 +1,7 @@
 import React from "react";
-import { SafeAreaView, Text, StyleSheet, View, TextInput } from "react-native";
+import { SafeAreaView, Text, StyleSheet, View, TextInput, Switch} from "react-native";
 import TopBar from "../elements/TopBar";
-import { useState } from "react";
+import { useState} from "react";
 import EnclosedButton from "../elements/EnclosedButton";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DropdownComponent from '../elements/DropdownComponent';
@@ -35,6 +35,11 @@ export default function CreatePost({ navigation, setLoggedInUser }) {
       <View style={styles.button}>
         <EnclosedButton title="Post" onPress={handlePost}></EnclosedButton>
       </View>
+
+      <View style = {styles.switchView}>
+        <Switch/>
+      </View>
+
       </KeyboardAwareScrollView>
   );
 }
@@ -86,5 +91,11 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     top: 100,
   },
+  switchView: {
+    flex: 1, 
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    marginRight: 20,
+  }
 });
 
