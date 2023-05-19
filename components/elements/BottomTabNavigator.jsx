@@ -63,7 +63,7 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
           ),
         })}
       >
-        {() => <Explore setLoggedInUser={setLoggedInUser} />}
+        {(props) => <Explore {...props} setLoggedInUser={setLoggedInUser} />}
       </Tab.Screen>
       <Tab.Screen
         name="Create"
