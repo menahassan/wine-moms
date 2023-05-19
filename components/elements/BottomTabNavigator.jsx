@@ -43,6 +43,14 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
                 />
               )}
             </Stack.Screen>
+            <Stack.Screen name="CreateCommunity" options={{ headerShown: false }}>
+              {() => (
+                <CreateCommunity
+                  navigation={navigation}
+                  setLoggedInUser={setLoggedInUser}
+                />
+              )}
+            </Stack.Screen>
           </Stack.Navigator>
         )}
       </Tab.Screen>
