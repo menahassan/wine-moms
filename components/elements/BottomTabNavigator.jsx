@@ -2,6 +2,7 @@ import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Icon from "react-native-vector-icons/Ionicons";
+import { createStackNavigator } from "@react-navigation/stack";
 
 import HomePage from "../pages/HomePage";
 import UserProfile from "../pages/UserProfile";
@@ -11,6 +12,7 @@ import CreatePost from "../pages/CreatePost";
 import CommunityPage from "../pages/CommunityPage";
 
 const Tab = createMaterialBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
   return (
@@ -24,7 +26,24 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
         })}
       >
         {() => (
-          <HomePage navigation={navigation} setLoggedInUser={setLoggedInUser}/>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" options={{ headerShown: false }}>
+              {() => (
+                <HomePage
+                  navigation={navigation}
+                  setLoggedInUser={setLoggedInUser}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="CommunityPage" options={{ headerShown: false }}>
+              {() => (
+                <CommunityPage
+                  navigation={navigation}
+                  setLoggedInUser={setLoggedInUser}
+                />
+              )}
+            </Stack.Screen>
+          </Stack.Navigator>
         )}
       </Tab.Screen>
       <Tab.Screen
@@ -35,7 +54,7 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
           ),
         })}
       >
-        {() => <CommunityPage setLoggedInUser={setLoggedInUser} />}
+        {() => <Explore setLoggedInUser={setLoggedInUser} />}
       </Tab.Screen>
       <Tab.Screen
         name="Create"

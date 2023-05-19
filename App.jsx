@@ -29,16 +29,17 @@ export default function App() {
           </Stack.Navigator>
         </NavigationContainer>
       ) : (
-        <NavigationContainer screenProps={{ setLoggedInUser: setLoggedInUser }}>
+        <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="Main" options={{ headerShown: false }}>
-              {() => <BottomTabNavigator setLoggedInUser={setLoggedInUser} />}
+              {(props) => <BottomTabNavigator {...props} setLoggedInUser={setLoggedInUser} />}
             </Stack.Screen>
             <Stack.Screen
               name="PostDetails"
-              component={PostDetails}
               options={{ headerShown: false }}
-            />
+            >
+            {(props) => <PostDetails {...props} setLoggedInUser={setLoggedInUser} />}
+            </Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
       )}
