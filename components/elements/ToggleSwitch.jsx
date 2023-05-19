@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import { SafeAreaView, Text, StyleSheet, View, TextInput, Switch} from "react-native";
 
 
 const ToggleSwitch = () => {
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
     return (
         <View style = {styles.switchView}>
         <Text style= {styles.SwitchTitle}>Anonymous Post</Text>

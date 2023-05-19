@@ -33,13 +33,17 @@ export default function CreatePost({ navigation, setLoggedInUser }) {
           textAlignVertical="top"
           value={description}
         />
+
+      <View style = {{alignItems: 'center', justifyContent: 'center', marginTop: 90}}>
+        <ToggleSwitch /> 
+      </View>
+
       <View style={styles.button}>
+        <Text style = {styles.communityGuideline}> By posting, I am agreeing to the community
+         </Text>
         <EnclosedButton title="Post" onPress={handlePost}></EnclosedButton>
       </View>
 
-      <View style = {{alignItems: 'center', justifyContent: 'center'}}>
-        <ToggleSwitch /> 
-      </View>
       </KeyboardAwareScrollView>
   );
 }
@@ -86,10 +90,15 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   button: {
-    width: 80,
-    margin: 10,
-    marginLeft: "auto",
-    top: 100,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    marginTop: 20, 
+  },
+  communityGuideline:{
+    margin: 20,
+    color: "#8F8F8F",
+    fontSize: 15,
   }
 });
 
