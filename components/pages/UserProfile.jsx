@@ -9,8 +9,10 @@ import {
 } from "react-native";
 import TopBar from "../elements/TopBar";
 import CommunityButton from "../elements/CommunityButton";
+import PostCard from "../elements/PostCard";
 
 const user = require("../../modelData/users.json")[0];
+const fakePosts = require("../../modelData/posts.json");
 
 export default function UserProfile({ navigation, setLoggedInUser }) {
   const handleEditProfile = () => {
@@ -40,7 +42,7 @@ export default function UserProfile({ navigation, setLoggedInUser }) {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.communitiesContainer}>
+      <View style={styles.sectionContainer}>
         <Text style={styles.header}>Communities</Text>
         <View style={styles.row}>
           {user.communities.map((title, index) => {
@@ -53,6 +55,20 @@ export default function UserProfile({ navigation, setLoggedInUser }) {
             );
           })}
         </View>
+      </View>
+      <View style={[styles.sectionContainer, styles.extraPadding]}>
+        <Text style={styles.header}>Recent Posts</Text>
+        {fakePosts.map((post, index) => {
+          if (post.userId === user.id) {
+            return (
+              <View key={index}>
+                <PostCard navigation={navigation} postInfo={post}></PostCard>
+              </View>
+            );
+          } else {
+            return null; // Don't render anything if the post isn't from this user
+          }
+        })}
       </View>
     </ScrollView>
   );
@@ -113,7 +129,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 600,
   },
-  communitiesContainer: {
+  sectionContainer: {
     marginTop: 20,
     paddingHorizontal: 20,
   },
@@ -124,5 +140,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     flex: 2,
+  },
+  extraPadding : {
+    paddingBottom: 20
   }
 });

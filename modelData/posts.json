@@ -1,6 +1,7 @@
 [
     {
         "user": "Gianna Higgins",
+        "userId": "1",
         "image": "https://www.foodandwine.com/thmb/srEHECIjjqIsJfKkhy-oiwcoZ4I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Wine-Guide-Beaujolais-FT-BLOG0722-2000-7f1cac81f5044d3cbfeac708b66c4bea.jpg",
         "community": "arizona",
         "timestamp": "2023-05-09T04:15:12.356Z",
@@ -11,6 +12,7 @@
     },
     {
         "user": "Mena Hassan",
+        "userId": "2",
         "image": "https://cdn.shareably.net/wp-content/uploads/2019/05/17102147/Screen-Shot-2019-05-17-at-10.21.12-AM.png",
         "community": "your",
         "timestamp": "2023-05-09T02:15:12.356Z",
@@ -21,6 +23,7 @@
     },
     {
         "user": "Jane Doe",
+        "userId": "3",
         "image": "",
         "community": "chef",
         "timestamp": "2023-05-11T02:15:12.356Z",
