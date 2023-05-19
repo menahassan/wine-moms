@@ -1,10 +1,15 @@
 import React from "react";
-import { Text, ScrollView, Image, StyleSheet, View } from "react-native";
+import { Text, ScrollView, Image, StyleSheet, View, TouchableOpacity } from "react-native";
 import TopBar from "../elements/TopBar";
 
 const user = require("../../modelData/users.json")[0];
 
 export default function UserProfile({ setLoggedInUser }) {
+  const handleEditProfile = () => {
+    // Eventually have valid
+    console.log("handle edit profile");
+  };
+
   return (
     <ScrollView>
       <TopBar setLoggedInUser={setLoggedInUser} />
@@ -17,12 +22,15 @@ export default function UserProfile({ setLoggedInUser }) {
           />
         </View>
         <Text style={styles.userName}>
-        <Text style={styles.boldText}>{user.first_name}</Text>
+          <Text style={styles.boldText}>{user.first_name}</Text>
           {` ${user.last_name}`}
         </Text>
-        <Text style={styles.description}>
-          {user.description}
-        </Text>
+        <Text style={styles.description}>{user.description}</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity title={""} onPress={handleEditProfile}>
+            <Text style={styles.buttonText}>Edit Profile</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
@@ -50,7 +58,7 @@ const styles = StyleSheet.create({
   },
   profileContainer: {
     width: "100%",
-    height: 408,
+    height: 460,
     backgroundColor: "#B497B1",
     alignItems: "center",
   },
@@ -67,6 +75,20 @@ const styles = StyleSheet.create({
     fontSize: 17,
     paddingTop: 12,
     paddingHorizontal: 36,
-    textAlign: "center"
+    textAlign: "center",
   },
+  buttonContainer: {
+    backgroundColor: "#7E6095",
+    borderRadius: 7,
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingRight: 22,
+    paddingLeft: 22,
+    marginTop: 13,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: 600
+  }
 });
