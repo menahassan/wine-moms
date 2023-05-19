@@ -14,14 +14,12 @@ export default function TopBar({ setLoggedInUser, icon, navigation }) {
     setLoggedInUser("");
   };
 
-  const handleIconPress = (icon) => {
-    if (icon == "arrow-back-ios") {
+  const handleMenuPress = (icon) => {
+    if (icon === "arrow-back-ios") {
       navigation.goBack();
+    } else {
+      setShowMenu(true);
     }
-  };
-
-  const handleMenuPress = () => {
-    setShowMenu(true);
   };
 
   const pressCommunityPage = () => {
@@ -33,10 +31,13 @@ export default function TopBar({ setLoggedInUser, icon, navigation }) {
     navigation.navigate('Home')
   };
 
+  const pressCreateCommunity= () => {
+    navigation.navigate('CreateCommunity')
+  };
+
   const handleOverlayClick = () => {
     setShowMenu(false);
   };
-  console.log(navigationState);
 
   const Divider = () => {
     return <View style={styles.divider} />;
@@ -45,9 +46,9 @@ export default function TopBar({ setLoggedInUser, icon, navigation }) {
     <View style={styles.menuContainer}>
     <View style={styles.topBar}>
     
-      <TouchableOpacity onPress={() => handleIconPress(icon || "menu")}>
+      <TouchableOpacity>
       {(navigationState.index === 0 || navigationState.index === 1)  && (
-        <MaterialIcons name={icon || "menu"} color={"#ffffff"} size={40} onPress={handleMenuPress}/>
+        <MaterialIcons name={icon || "menu"} color={"#ffffff"} size={40} onPress={() => handleMenuPress(icon)}/>
         )}
       </TouchableOpacity>
       <Text style={styles.appTitle}>
@@ -73,7 +74,7 @@ export default function TopBar({ setLoggedInUser, icon, navigation }) {
           <View><Text onPress={pressCommunityPage} style={styles.menuText}>your<Text style={styles.menuTextBold}>moms</Text></Text><Divider /></View>
           <View><Text style={styles.menuText} onPress={pressCommunityPage}>chef<Text style={styles.menuTextBold}>moms</Text></Text><Divider /></View>
           <View><Text style={styles.menuText} onPress={pressCommunityPage}>arizona<Text style={styles.menuTextBold}>moms</Text></Text><Divider /></View>
-          <View><Text style={styles.menuText} >Add Community</Text></View>
+          <View><Text style={styles.menuText} onPress={pressCreateCommunity}>Add Community</Text></View>
           </View>
     </Modal>
     </View>

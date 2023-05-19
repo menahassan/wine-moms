@@ -10,6 +10,7 @@ import Explore from "../pages/ExplorePage";
 import Chat from "../pages/Chat";
 import CreatePost from "../pages/CreatePost";
 import CommunityPage from "../pages/CommunityPage";
+import CreateCommunity from  "../pages/CreateCommunity";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
