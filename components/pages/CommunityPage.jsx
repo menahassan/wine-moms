@@ -29,6 +29,10 @@ export default function CommunityPage({ navigation, setLoggedInUser }) {
           Welcome! arizonamoms is a community for moms located in Arizona. Here
           are our community norms:
         </Text>
+        <Text style = {styles.description}> - No discrimination or harassment</Text>
+        <Text style = {styles.description}> - Treat others with respect </Text>
+
+
       </View>
 
       <View>
@@ -52,14 +56,16 @@ const styles = StyleSheet.create({
   titlecard: {
     backgroundColor: "#ECECEC", //#ECECEC
     flexDirection: "column",
-    height: 100,
+    //height: 100,
+    paddingVertical: 10,
+    width: '100%',
     marginTop: 0,
   },
   communityTitle: {
     color: "#000000",
     fontSize: 25,
     marginTop: 10,
-    left: 10,
+    left: 20,
   },
   boldText: {
     fontWeight: 600,
@@ -67,7 +73,7 @@ const styles = StyleSheet.create({
   description: {
     color: "#000000",
     fontSize: 15,
-    left: 40,
+    marginLeft: 10,
     marginRight: 20,
     marginTop: 10,
     left: 10,
