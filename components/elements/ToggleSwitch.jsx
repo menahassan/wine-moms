@@ -9,7 +9,8 @@ const ToggleSwitch = () => {
     return (
         <View style = {styles.switchView}>
         <Text style= {styles.SwitchTitle}>Anonymous Post</Text>
-        <Switch/>
+        <Switch   onValueChange={toggleSwitch}
+        value={isEnabled}/>
       </View>
     );
   };

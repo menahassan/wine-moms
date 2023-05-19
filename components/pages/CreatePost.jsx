@@ -39,7 +39,7 @@ export default function CreatePost({ navigation, setLoggedInUser }) {
       </View>
 
       <View style={styles.button}>
-        <Text style = {styles.communityGuideline}> By posting, I am agreeing to the community
+        <Text style = {styles.communityGuideline}> By posting, I am agreeing to the community guidelines
          </Text>
         <EnclosedButton title="Post" onPress={handlePost}></EnclosedButton>
       </View>
@@ -94,6 +94,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     marginTop: 20, 
+    width: '100%',
+    paddingVertical: 10
   },
   communityGuideline:{
     margin: 20,
