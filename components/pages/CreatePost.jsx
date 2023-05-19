@@ -34,7 +34,7 @@ export default function CreatePost({ navigation, setLoggedInUser }) {
           value={description}
         />
 
-      <View style = {{alignItems: 'center', justifyContent: 'center', marginTop: 90}}>
+      <View style = {{alignItems: 'center', justifyContent: 'center', marginTop: 110}}>
         <ToggleSwitch /> 
       </View>
 
@@ -92,10 +92,8 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    justifyContent: 'flex-end',
-    marginTop: 20, 
+    justifyContent: 'flex-end', 
     width: '100%',
-    paddingVertical: 10
   },
   communityGuideline:{
     margin: 20,
