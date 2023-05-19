@@ -2,8 +2,8 @@
     {
         "id" : "1",
         "name" : "Gianna Higgins",
-        "profile_photo": "",
-        "cover_photo": "",
+        "profile_photo": "https://i2.wp.com/sleepingshouldbeeasy.com/wp-content/uploads/2020/05/time-management-for-moms.jpg",
+        "cover_photo": "https://i0.wp.com/post.healthline.com/wp-content/uploads/2019/10/Baby_Sleeping_Blanket_1296x728-header-1296x728.jpg?w=1155&h=1528",
         "communities": ["arizona", "your"]
     }
 ]
