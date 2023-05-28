@@ -40,13 +40,11 @@ const RegisterPage = ({ setLoggedInUser }) => {
       .then((response) => {
         console.log("User profile", response.data.user);
         console.log("User token", response.data.jwt);
+        setLoggedInUser({ user: response.data.user, token: response.data.jwt });
       })
       .catch((error) => {
         console.log("An error occurred:", error.message);
       });
-      console.log(selectedItems)
-    // Eventuall have invalid login logic
-    setLoggedInUser(username);
   };
 
   return (
