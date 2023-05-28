@@ -15,7 +15,7 @@ import CreateCommunity from  "../pages/CreateCommunity";
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 
-export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
+export default function BottomTabNavigator({ navigation, setLoggedInUser, loggedInUser }) {
   return (
     <Tab.Navigator barStyle={{ backgroundColor: "#845780" }} labeled={false}>
       <Tab.Screen
@@ -33,6 +33,7 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
                 <HomePage
                   navigation={navigation}
                   setLoggedInUser={setLoggedInUser}
+                  loggedInUser = {loggedInUser}
                 />
               )}
             </Stack.Screen>
@@ -41,6 +42,7 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
                 <CommunityPage
                   navigation={navigation}
                   setLoggedInUser={setLoggedInUser}
+                  loggedInUser = {loggedInUser}
                 />
               )}
             </Stack.Screen>
@@ -49,6 +51,7 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
                 <CreateCommunity
                   navigation={navigation}
                   setLoggedInUser={setLoggedInUser}
+                  loggedInUser = {loggedInUser}
                 />
               )}
             </Stack.Screen>
@@ -63,7 +66,7 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
           ),
         })}
       >
-        {(props) => <Explore {...props} setLoggedInUser={setLoggedInUser} />}
+        {(props) => <Explore {...props} setLoggedInUser={setLoggedInUser} loggedInUser = {loggedInUser}/>}
       </Tab.Screen>
       <Tab.Screen
         name="Create"
@@ -73,7 +76,7 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
           ),
         })}
       >
-        {() => <CreatePost setLoggedInUser={setLoggedInUser} />}
+        {() => <CreatePost setLoggedInUser={setLoggedInUser} loggedInUser = {loggedInUser}/>}
       </Tab.Screen>
       <Tab.Screen
         name="Chat"
@@ -83,7 +86,7 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
           ),
         })}
       >
-        {() => <Chat setLoggedInUser={setLoggedInUser} />}
+        {() => <Chat setLoggedInUser={setLoggedInUser} loggedInUser = {loggedInUser}/>}
       </Tab.Screen>
       <Tab.Screen
         name="User Profile"
@@ -93,7 +96,7 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser }) {
           ),
         })}
       >
-        {() => <UserProfile navigation={navigation} setLoggedInUser={setLoggedInUser} />}
+        {() => <UserProfile navigation={navigation} setLoggedInUser={setLoggedInUser} loggedInUser = {loggedInUser} />}
       </Tab.Screen>
     </Tab.Navigator>
   );

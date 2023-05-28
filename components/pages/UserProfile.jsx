@@ -16,7 +16,7 @@ import axios from "axios";
 const user = require("../../modelData/users.json")[0];
 const fakePosts = require("../../modelData/posts.json");
 
-export default function UserProfile({ navigation, setLoggedInUser }) {
+export default function UserProfile({ navigation, setLoggedInUser, loggedInUser }) {
   const [currentUser, setCurrentUser] = useState({});
 
   const HOSTNAME = "http://localhost:1337";
@@ -26,13 +26,13 @@ export default function UserProfile({ navigation, setLoggedInUser }) {
     console.log("handle edit profile");
   };
 
-  // for now set current user as user with id 1
+  // get data from current user
   useEffect(() => {
+    // get data from backend again, because user object does not store relational data, including images
     axios
-      .get(`${HOSTNAME}/api/users/1?populate=*`)
+      .get(`${HOSTNAME}/api/users/${loggedInUser.user.id}?populate=*`)
       .then((response) => {
         setCurrentUser(response.data);
-        console.log(response.data.coverPhoto[0].url);
       })
       .catch((error) => console.log(error.message));
   }, []);

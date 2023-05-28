@@ -2,14 +2,30 @@ import React from "react";
 import { SafeAreaView, StyleSheet, TextInput, Text, Image } from "react-native";
 import EnclosedButton from "../elements/EnclosedButton";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const LoginPage = ({ navigation, setLoggedInUser }) => {
   const [username, onChangeUsername] = React.useState("");
   const [password, onChangePassword] = React.useState("");
+  const HOSTNAME = "http://localhost:1337";
 
   const handleLogin = () => {
-    // Eventuall have invalid login logic
-    setLoggedInUser(username);
+    // user can login with either email or username and password
+    axios
+      .post(`${HOSTNAME}/api/auth/local`, {
+        identifier: username,
+        password: password,
+      })
+      .then((response) => {
+        console.log("User profile", response.data.user);
+        //token is used to access data that only an authorized user can access
+        console.log("User token", response.data.jwt);
+        //sets loggedInUser with user info and access token
+        setLoggedInUser({ user: response.data.user, token: response.data.jwt });
+      })
+      .catch((error) => {
+        console.log("An error occurred:", error.response);
+      });
   };
 
   const handleRegisterRedirect = () => {
@@ -27,12 +43,14 @@ const LoginPage = ({ navigation, setLoggedInUser }) => {
         style={styles.logo}
       ></Image>
       <TextInput
+        autoCapitalize="none"
         style={styles.input}
         onChangeText={onChangeUsername}
         placeholder="username"
         value={username}
       />
       <TextInput
+        autoCapitalize="none"
         style={styles.input}
         onChangeText={onChangePassword}
         placeholder="password"

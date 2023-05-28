@@ -26,7 +26,7 @@ const RegisterPage = ({ setLoggedInUser }) => {
   const HOSTNAME = "http://localhost:1337";
 
   const handleRegister = () => {
-    console.log(selectedItems);
+    // send inputted data from user to database
     axios
       .post(`${HOSTNAME}/api/auth/local/register`, {
         username: username,

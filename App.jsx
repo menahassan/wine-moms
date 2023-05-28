@@ -32,13 +32,13 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="Main" options={{ headerShown: false }}>
-              {(props) => <BottomTabNavigator {...props} setLoggedInUser={setLoggedInUser} />}
+              {(props) => <BottomTabNavigator {...props} setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}/>}
             </Stack.Screen>
             <Stack.Screen
               name="PostDetails"
               options={{ headerShown: false }}
             >
-            {(props) => <PostDetails {...props} setLoggedInUser={setLoggedInUser} />}
+            {(props) => <PostDetails {...props} setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}/>}
             </Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
