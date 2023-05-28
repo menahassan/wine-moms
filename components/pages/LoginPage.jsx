@@ -1,10 +1,9 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput, Text, Image} from "react-native";
+import { SafeAreaView, StyleSheet, TextInput, Text, Image } from "react-native";
 import EnclosedButton from "../elements/EnclosedButton";
-import { useState } from "react";
-import TopBar from "../elements/TopBar";
+import { useState, useEffect } from "react";
 
-const LoginPage = ({ navigation, setLoggedInUser}) => {
+const LoginPage = ({ navigation, setLoggedInUser }) => {
   const [username, onChangeUsername] = React.useState("");
   const [password, onChangePassword] = React.useState("");
 
@@ -14,41 +13,44 @@ const LoginPage = ({ navigation, setLoggedInUser}) => {
   };
 
   const handleRegisterRedirect = () => {
-    navigation.navigate('Register');
+    navigation.navigate("Register");
   };
 
   return (
     <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>
-            wine
-            <Text style={styles.boldTitle}>moms</Text>
-        </Text>
-        <Image source={require('../../assets/logo.png')} style={styles.logo}></Image>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeUsername}
-          placeholder="username"
-          value={username}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangePassword}
-          placeholder="password"
-          value={password}
-        />
-        <EnclosedButton title="Login" onPress={handleLogin}></EnclosedButton>
-        <Text style={styles.register} onPress={handleRegisterRedirect}>
-            Don't Have An Account? 
-        </Text>
+      <Text style={styles.title}>
+        wine
+        <Text style={styles.boldTitle}>moms</Text>
+      </Text>
+      <Image
+        source={require("../../assets/logo.png")}
+        style={styles.logo}
+      ></Image>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeUsername}
+        placeholder="username"
+        value={username}
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangePassword}
+        placeholder="password"
+        value={password}
+      />
+      <EnclosedButton title="Login" onPress={handleLogin}></EnclosedButton>
+      <Text style={styles.register} onPress={handleRegisterRedirect}>
+        Don't Have An Account?
+      </Text>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#845780',
+    backgroundColor: "#845780",
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
   logo: {
     height: 100,
@@ -56,13 +58,13 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 20,
-    color: 'white',
+    color: "white",
     fontSize: 40,
   },
   boldTitle: {
-    color: 'white',
+    color: "white",
     fontSize: 40,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   input: {
     height: 40,
@@ -70,9 +72,9 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    backgroundColor: '#EFECEC',
-    color: '#8F8F8F',
-    borderColor: '#8F8F8F',
+    backgroundColor: "#EFECEC",
+    color: "#8F8F8F",
+    borderColor: "#8F8F8F",
     borderRadius: 7,
   },
   buttonContainer: {
@@ -85,8 +87,8 @@ const styles = StyleSheet.create({
     color: "white",
   },
   register: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
 });
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import {
   Text,
   ScrollView,
@@ -10,66 +11,106 @@ import {
 import TopBar from "../elements/TopBar";
 import CommunityButton from "../elements/CommunityButton";
 import PostCard from "../elements/PostCard";
+import axios from "axios";
 
 const user = require("../../modelData/users.json")[0];
 const fakePosts = require("../../modelData/posts.json");
 
 export default function UserProfile({ navigation, setLoggedInUser }) {
+  const [currentUser, setCurrentUser] = useState({});
+
+  const HOSTNAME = "http://localhost:1337";
+
   const handleEditProfile = () => {
     // Eventually have valid
     console.log("handle edit profile");
   };
 
+  // for now set current user as user with id 1
+  useEffect(() => {
+    axios
+      .get(`${HOSTNAME}/api/users/1?populate=*`)
+      .then((response) => {
+        setCurrentUser(response.data);
+        console.log(response.data.coverPhoto[0].url);
+      })
+      .catch((error) => console.log(error.message));
+  }, []);
+
   return (
     <ScrollView>
       <TopBar setLoggedInUser={setLoggedInUser} />
-      <View style={styles.profileContainer}>
-        <Image style={styles.coverPhoto} source={{ uri: user.cover_photo }} />
-        <View style={styles.profilePhotoContainer}>
-          <Image
-            style={styles.profilePhoto}
-            source={{ uri: user.profile_photo }}
-          />
+      {currentUser == {}  || !currentUser || !currentUser.firstName ? (
+        <></>
+      ) : (
+        <View>
+          <View style={styles.profileContainer}>
+            {
+              currentUser?.coverPhoto
+              ?
+              <Image
+                style={styles.coverPhoto}
+                source={{ uri: `${HOSTNAME}${currentUser.coverPhoto[0].url}` }}
+              />
+              :
+              <></>
+            }
+            <View style={styles.profilePhotoContainer}>
+              {
+                currentUser?.profilePhoto
+                ?
+                <Image
+                  style={styles.profilePhoto}
+                  source={{ uri: `${HOSTNAME}${currentUser.profilePhoto.url}` }}
+                />
+                :
+                <></>
+              }
+            </View>
+            <Text style={styles.userName}>
+              <Text style={styles.boldText}>{currentUser.firstName}</Text>
+              {` ${currentUser.lastName}`}
+            </Text>
+            <Text style={styles.description}>{currentUser.description}</Text>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity title={""} onPress={handleEditProfile}>
+                <Text style={styles.buttonText}>Edit Profile</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.header}>Communities</Text>
+            <View style={styles.row}>
+              {currentUser.communities.map((community, index) => {
+                return (
+                  <CommunityButton
+                    key={index}
+                    title={community.Name}
+                    navigation={navigation}
+                  ></CommunityButton>
+                );
+              })}
+            </View>
+          </View>
+          <View style={[styles.sectionContainer, styles.extraPadding]}>
+            <Text style={styles.header}>Recent Posts</Text>
+            {fakePosts.map((post, index) => {
+              if (post.userId === user.id) {
+                return (
+                  <View key={index}>
+                    <PostCard
+                      navigation={navigation}
+                      postInfo={post}
+                    ></PostCard>
+                  </View>
+                );
+              } else {
+                return null; // Don't render anything if the post isn't from this user
+              }
+            })}
+          </View>
         </View>
-        <Text style={styles.userName}>
-          <Text style={styles.boldText}>{user.first_name}</Text>
-          {` ${user.last_name}`}
-        </Text>
-        <Text style={styles.description}>{user.description}</Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity title={""} onPress={handleEditProfile}>
-            <Text style={styles.buttonText}>Edit Profile</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={styles.sectionContainer}>
-        <Text style={styles.header}>Communities</Text>
-        <View style={styles.row}>
-          {user.communities.map((title, index) => {
-            return (
-              <CommunityButton
-                key={index}
-                title={title}
-                navigation={navigation}
-              ></CommunityButton>
-            );
-          })}
-        </View>
-      </View>
-      <View style={[styles.sectionContainer, styles.extraPadding]}>
-        <Text style={styles.header}>Recent Posts</Text>
-        {fakePosts.map((post, index) => {
-          if (post.userId === user.id) {
-            return (
-              <View key={index}>
-                <PostCard navigation={navigation} postInfo={post}></PostCard>
-              </View>
-            );
-          } else {
-            return null; // Don't render anything if the post isn't from this user
-          }
-        })}
-      </View>
+      )}
     </ScrollView>
   );
 }
@@ -141,7 +182,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flex: 2,
   },
-  extraPadding : {
-    paddingBottom: 20
-  }
+  extraPadding: {
+    paddingBottom: 20,
+  },
 });

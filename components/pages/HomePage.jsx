@@ -5,6 +5,7 @@ import TopBar from "../elements/TopBar";
 const fakePosts = require("../../modelData/posts.json");
 
 export default function HomePage({ navigation, setLoggedInUser }) {
+  
   return (
     <ScrollView>
       <TopBar setLoggedInUser={setLoggedInUser} navigation={navigation}></TopBar>

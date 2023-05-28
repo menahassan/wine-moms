@@ -1,19 +1,34 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, FlatList} from 'react-native';
-import MultiSelect from 'react-native-multiple-select';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, FlatList } from "react-native";
+import MultiSelect from "react-native-multiple-select";
+import axios from "axios";
 
-const DropdownComponent = () => {
-  const [selectedItems, setSelectedItems] = useState([]);
+const DropdownComponent = ({setSelectedItems, selectedItems}) => {
+  
+  const [communities, setCommunities] = useState([]);
 
   const onSelectedItemsChange = (selectedItems) => {
     setSelectedItems(selectedItems);
+    console.log(selectedItems)
   };
 
-  const communities = [
-    { label: 'yourmoms', value: 'your' },
-    { label: 'chefmoms', value: 'chef' },
-    { label: 'arizonamoms', value: 'arizona' }
-  ];
+  const HOSTNAME = "http://localhost:1337";
+
+  useEffect(() => {
+    axios
+      .get(`${HOSTNAME}/api/communities`)
+      .then((response) => {
+        let arr = [];
+        response.data.data.map((community) =>
+          arr.push({
+            label: community.attributes.Name + "moms",
+            value: community.id,
+          })
+        );
+        setCommunities(arr);
+      })
+      .catch((error) => console.log(error.message));
+  }, []);
 
   const ItemSeparator = () => <View style={styles.itemSeparator} />;
 
@@ -32,7 +47,7 @@ const DropdownComponent = () => {
         tagTextColor="#333"
         selectedItemTextColor="#333"
         selectedItemIconColor="#333"
-        itemTextColor='#8F8F8F'
+        itemTextColor="#8F8F8F"
         displayKey="label"
         searchInputStyle={styles.searchInputStyle}
         submitButtonColor="#694066"
@@ -54,24 +69,24 @@ const styles = StyleSheet.create({
   },
   itemSeparator: {
     height: 1,
-    backgroundColor: 'gray',
+    backgroundColor: "gray",
     // ... your other styles
   },
   searchInputStyle: {
-    color: '#8F8F8F',
+    color: "#8F8F8F",
     height: 40,
   },
   dropdownMenu: {
     margin: 8,
-    backgroundColor: '#EFECEC',
+    backgroundColor: "#EFECEC",
     borderRadius: 7,
   },
   itemsContainer: {
     maxHeight: 200,
-    backgroundColor: '#EFECEC',
+    backgroundColor: "#EFECEC",
   },
   rowList: {
-    backgroundColor: '#EFECEC',
+    backgroundColor: "#EFECEC",
   },
 });
 
