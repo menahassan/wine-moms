@@ -10,15 +10,15 @@ import {
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import PostDetails from "../pages/PostDetails";
 
-export default function PostCard({ navigation, postInfo }) {
+export default function PostCard({ navigation, postInfo, loggedInUser }) {
   // set image dimensions
   const [dimensions, setDimensions] = useState([]);
 
   // get mobile window dimensions
   const win = Dimensions.get("window");
 
-  if (postInfo.image !== "") {
-    Image.getSize(postInfo.image, (width, height) => {
+  if (postInfo.image) {
+    Image.getSize(postInfo.imageLink, (width, height) => {
       setDimensions([width, height]);
     });
   }
@@ -35,13 +35,13 @@ export default function PostCard({ navigation, postInfo }) {
   return (
     <View style={styles.card}>
       <Text style={styles.text}>
-      <Text style={styles.boldText}>
-        {postInfo.community}
+        <Text style={styles.boldText}>
+          {postInfo.community.data ? postInfo.community.data.attributes.Name : postInfo.community.Name}
         </Text>
         moms
       </Text>
       <TouchableOpacity onPress={handlePostDetailsPress}>
-        {/*postInfo.image == "" ? (
+        {/*postInfo.image ? (
         <></>
       ) : (
         <Image
@@ -60,12 +60,14 @@ export default function PostCard({ navigation, postInfo }) {
                   height: dimensions[1] * ((win.width - 40) / dimensions[0]),
                 }
           }
-          source={{ uri: postInfo.image }}
+          source={{ uri: postInfo.imageLink }}
         />
         )*/}
         <View style={styles.row}>
           <Text style={styles.profile_pic}>
-            {postInfo.anonymous ? "Anonymous" : postInfo.user}
+            {postInfo.anonymous
+              ? "Anonymous"
+              : `${postInfo.createdByUser.data ? postInfo.createdByUser.data.attributes.firstName : postInfo.createdByUser.firstName} ${postInfo.createdByUser.data ? postInfo.createdByUser.data.attributes.lastName : postInfo.createdByUser.lastName}`}
           </Text>
           <Text style={styles.timestamp}>
             {daysAgo == 0
@@ -75,18 +77,27 @@ export default function PostCard({ navigation, postInfo }) {
         </View>
         <Text style={styles.text}>{postInfo.description}</Text>
         <View style={styles.likeBar}>
-          <MaterialIcons
-            style={styles.heartSpacing}
-            name="favorite"
-            color={"#ff4747"}
-            size={22}
-          />
+          {postInfo.likedByCurrentUser ? (
+            <MaterialIcons
+              style={styles.heartSpacing}
+              name="favorite"
+              color={"#ff4747"}
+              size={22}
+            />
+          ) : (
+            <MaterialIcons
+              style={styles.heartSpacing}
+              name="favorite-border"
+              color={"#ff4747"}
+              size={22}
+            />
+          )}
           <Text
             style={[styles.text, styles.likeSpacing]}
-          >{`${postInfo.likes.length} likes`}</Text>
+          >{`${postInfo.likedByUsers.data ? postInfo.likedByUsers.data.length : postInfo.likedByUsers.length} likes`}</Text>
           <Text
             style={[styles.text, styles.commentSpacing]}
-          >{`${postInfo.comments.length} comments`}</Text>
+          >{`${postInfo.comments.data ? postInfo.comments.data.length : postInfo.comments.length} comments`}</Text>
         </View>
       </TouchableOpacity>
     </View>

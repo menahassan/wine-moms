@@ -15,6 +15,7 @@ import axios from "axios";
 
 const user = require("../../modelData/users.json")[0];
 const fakePosts = require("../../modelData/posts.json");
+const qs = require('qs');
 
 export default function UserProfile({ navigation, setLoggedInUser, loggedInUser }) {
   const [currentUser, setCurrentUser] = useState({});
@@ -28,9 +29,30 @@ export default function UserProfile({ navigation, setLoggedInUser, loggedInUser 
 
   // get data from current user
   useEffect(() => {
+    const query = qs.stringify(
+      {
+        populate: {
+          posts: {
+            populate: ['community', 'createdByUser', 'likedByUsers', 'comments'],
+          },
+          communities: {
+            fields: "*"
+          },
+          profilePhoto: {
+            fields: "*"
+          },
+          coverPhoto: {
+            fields: "*"
+          }
+        },
+      },
+      {
+        encodeValuesOnly: true, // prettify URL
+      }
+    );
     // get data from backend again, because user object does not store relational data, including images
     axios
-      .get(`${HOSTNAME}/api/users/${loggedInUser.user.id}?populate=*`)
+      .get(`${HOSTNAME}/api/users/${loggedInUser.user.id}?${query}`)
       .then((response) => {
         setCurrentUser(response.data);
       })
@@ -94,8 +116,7 @@ export default function UserProfile({ navigation, setLoggedInUser, loggedInUser 
           </View>
           <View style={[styles.sectionContainer, styles.extraPadding]}>
             <Text style={styles.header}>Recent Posts</Text>
-            {fakePosts.map((post, index) => {
-              if (post.userId === user.id) {
+            {currentUser.posts.map((post, index) => {
                 return (
                   <View key={index}>
                     <PostCard
@@ -104,9 +125,6 @@ export default function UserProfile({ navigation, setLoggedInUser, loggedInUser 
                     ></PostCard>
                   </View>
                 );
-              } else {
-                return null; // Don't render anything if the post isn't from this user
-              }
             })}
           </View>
         </View>

@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import EnclosedButton from "../elements/EnclosedButton";
 import { useState } from "react";
-import TopBar from "../elements/TopBar";
 import DropdownComponent from "../elements/DropdownComponent";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import axios from "axios";

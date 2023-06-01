@@ -1,7 +1,6 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, TextInput, Text, Image } from "react-native";
 import EnclosedButton from "../elements/EnclosedButton";
-import { useState, useEffect } from "react";
 import axios from "axios";
 
 const LoginPage = ({ navigation, setLoggedInUser }) => {
@@ -17,9 +16,7 @@ const LoginPage = ({ navigation, setLoggedInUser }) => {
         password: password,
       })
       .then((response) => {
-        console.log("User profile", response.data.user);
         //token is used to access data that only an authorized user can access
-        console.log("User token", response.data.jwt);
         //sets loggedInUser with user info and access token
         setLoggedInUser({ user: response.data.user, token: response.data.jwt });
       })
