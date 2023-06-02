@@ -4,8 +4,6 @@ import PostCard from "../elements/PostCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const fakePosts = require("../../modelData/posts.json");
-
 export default function CommunityPage({ navigation, setLoggedInUser, loggedInUser }) {
   const [posts, setPosts] = useState({});
   const HOSTNAME = "http://localhost:1337";

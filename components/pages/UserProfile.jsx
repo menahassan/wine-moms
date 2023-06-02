@@ -13,8 +13,6 @@ import CommunityButton from "../elements/CommunityButton";
 import PostCard from "../elements/PostCard";
 import axios from "axios";
 
-const user = require("../../modelData/users.json")[0];
-const fakePosts = require("../../modelData/posts.json");
 const qs = require('qs');
 
 export default function UserProfile({ navigation, setLoggedInUser, loggedInUser }) {

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { SafeAreaView, Text, StyleSheet, View, TextInput, Switch} from "react-native";
+import { Text, StyleSheet, View, Switch} from "react-native";
 
 
 const ToggleSwitch = () => {

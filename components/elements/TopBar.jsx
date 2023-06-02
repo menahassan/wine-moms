@@ -1,7 +1,6 @@
 import { Text, StyleSheet, View, TouchableOpacity, Modal, TouchableWithoutFeedback} from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import EnclosedButton from "./EnclosedButton";
-import HomePage from "../pages/HomePage";
 import { useState } from "react";
 import { useNavigationState } from "@react-navigation/native";
 
