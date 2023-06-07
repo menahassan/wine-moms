@@ -12,12 +12,13 @@ const DropdownComponent = ({setSelectedItems, selectedItems}) => {
     console.log(selectedItems)
   };
 
-  const HOSTNAME = "http://localhost:1337";
+  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
 
   useEffect(() => {
     axios
       .get(`${HOSTNAME}/api/communities`)
       .then((response) => {
+        console.log(response.data)
         let arr = [];
         response.data.data.map((community) =>
           arr.push({
@@ -27,7 +28,7 @@ const DropdownComponent = ({setSelectedItems, selectedItems}) => {
         );
         setCommunities(arr);
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => console.log(error));
   }, []);
 
   const ItemSeparator = () => <View style={styles.itemSeparator} />;

@@ -22,7 +22,7 @@ const RegisterPage = ({ setLoggedInUser }) => {
   const [description, onChangeDescription] = React.useState("");
   const [selectedItems, setSelectedItems] = useState([]);
 
-  const HOSTNAME = "http://localhost:1337";
+  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
 
   const handleRegister = () => {
     // send inputted data from user to database

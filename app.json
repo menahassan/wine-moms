@@ -15,13 +15,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mename.winemoms"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mename.winemoms"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -30,6 +32,12 @@
       "eas": {
         "projectId": "d9731989-839c-4fec-9047-3f75c38d5685"
       }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/d9731989-839c-4fec-9047-3f75c38d5685"
     }
   }
 }
