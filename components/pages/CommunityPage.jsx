@@ -8,7 +8,7 @@ import axios from "axios";
 export default function CommunityPage({ navigation, setLoggedInUser, loggedInUser }) {
   const [posts, setPosts] = useState({});
   const [communityInfo, setCommunityInfo] = useState({name: "", description: "", rules: ""});
-  const HOSTNAME = "http://localhost:1337";
+  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
 
   const handleBack = () => {
     navigation.navigate("UserProfile");

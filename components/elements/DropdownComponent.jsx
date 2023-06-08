@@ -11,7 +11,7 @@ const DropdownComponent = ({ selectedItems, onSelectedItemsChange }) => {
     onSelectedItemsChange(newSelectedItems);
   };
 
-  const HOSTNAME = "http://localhost:1337";
+  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
 
   useEffect(() => {
     axios

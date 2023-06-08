@@ -22,7 +22,7 @@ export default function PostDetails({
 
   const route = useRoute();
   const { postInfo } = route.params;
-  const HOSTNAME = "http://localhost:1337";
+  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
   const [names, setNames] = useState([]);
   const [comment, onChangeComment] = useState("");
 

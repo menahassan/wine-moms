@@ -15,7 +15,7 @@ export default function PostCard({ navigation, postInfo, postId, loggedInUser })
 
   const [likedByUser, setLikedByUser] = useState(postInfo.likedByCurrentUser);
 
-  const HOSTNAME = "http://localhost:1337";
+  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
 
   var dateDifference =
     new Date().getTime() - new Date(postInfo.timestamp).getTime();
@@ -61,7 +61,7 @@ export default function PostCard({ navigation, postInfo, postId, loggedInUser })
         {postInfo.image &&  postInfo.imageLink? (
         <Image
         style={styles.postImage}
-          source={{ uri: postInfo.imageLink.data ? `${HOSTNAME}${postInfo.imageLink.data.attributes.url}` : `${HOSTNAME}${postInfo.imageLink.url}` }}
+          source={{ uri: postInfo.imageLink.data ? `${postInfo.imageLink.data.attributes.url}` : `${postInfo.imageLink.url}` }}
         />
         ) : <></>}
         <View style={styles.row}>

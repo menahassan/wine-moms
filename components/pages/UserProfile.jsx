@@ -18,7 +18,7 @@ const qs = require('qs');
 export default function UserProfile({ navigation, setLoggedInUser, loggedInUser }) {
   const [currentUser, setCurrentUser] = useState({});
 
-  const HOSTNAME = "http://localhost:1337";
+  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
 
   const handleEditProfile = () => {
     // Eventually have valid
@@ -53,7 +53,6 @@ export default function UserProfile({ navigation, setLoggedInUser, loggedInUser 
     axios
       .get(`${HOSTNAME}/api/users/${loggedInUser.user.id}?${query}`)
       .then((response) => {
-        console.log(response.data.post);
         setCurrentUser(response.data);
       })
       .catch((error) => console.log(error.message));
@@ -72,7 +71,7 @@ export default function UserProfile({ navigation, setLoggedInUser, loggedInUser 
               ?
               <Image
                 style={styles.coverPhoto}
-                source={{ uri: `${HOSTNAME}${currentUser.coverPhoto[0].url}` }}
+                source={{ uri: `${currentUser.coverPhoto[0].url}` }}
               />
               :
               <></>
@@ -83,7 +82,7 @@ export default function UserProfile({ navigation, setLoggedInUser, loggedInUser 
                 ?
                 <Image
                   style={styles.profilePhoto}
-                  source={{ uri: `${HOSTNAME}${currentUser.profilePhoto.url}` }}
+                  source={{ uri: `${currentUser.profilePhoto.url}` }}
                 />
                 :
                 <></>

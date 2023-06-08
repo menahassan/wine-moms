@@ -6,7 +6,7 @@ import axios from "axios";
 const LoginPage = ({ navigation, setLoggedInUser }) => {
   const [username, onChangeUsername] = React.useState("");
   const [password, onChangePassword] = React.useState("");
-  const HOSTNAME = "http://localhost:1337";
+  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
 
   const handleLogin = () => {
     // user can login with either email or username and password

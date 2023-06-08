@@ -38,7 +38,7 @@ export default function CreatePost({
     setIsEnabled(value);
   };
 
-  const HOSTNAME = "http://localhost:1337";
+  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
 
   const uploadToStrapi = async () => {
     console.log(selectedImage._parts[0][1].uri);

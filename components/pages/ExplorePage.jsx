@@ -10,7 +10,7 @@ export default function ExplorePage({
   loggedInUser,
 }) {
   const [posts, setPosts] = useState({});
-  const HOSTNAME = "http://localhost:1337";
+  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
 
   useEffect(() => {
     // get data from backend again, because user object does not store relational data, including images
