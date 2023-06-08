@@ -27,11 +27,12 @@ export default function UserProfile({ navigation, setLoggedInUser, loggedInUser 
 
   // get data from current user
   useEffect(() => {
+    console.log(currentUser?.profilePhoto);
     const query = qs.stringify(
       {
         populate: {
           posts: {
-            populate: ['community', 'createdByUser', 'likedByUsers', 'comments'],
+            populate: ['community', 'createdByUser', 'likedByUsers', 'comments','imageLink'],
           },
           communities: {
             fields: "*"
@@ -52,6 +53,7 @@ export default function UserProfile({ navigation, setLoggedInUser, loggedInUser 
     axios
       .get(`${HOSTNAME}/api/users/${loggedInUser.user.id}?${query}`)
       .then((response) => {
+        console.log(response.data.post);
         setCurrentUser(response.data);
       })
       .catch((error) => console.log(error.message));

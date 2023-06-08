@@ -56,6 +56,7 @@ export default function ExplorePage({
                 <PostCard
                   navigation={navigation}
                   postInfo={posts[reverseIndex].attributes}
+                  loggedInUser={loggedInUser}
                 ></PostCard>
               </View>
             );

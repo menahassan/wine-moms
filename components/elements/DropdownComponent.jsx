@@ -3,13 +3,12 @@ import { StyleSheet, View, FlatList } from "react-native";
 import MultiSelect from "react-native-multiple-select";
 import axios from "axios";
 
-const DropdownComponent = ({setSelectedItems, selectedItems}) => {
+const DropdownComponent = ({ selectedItems, onSelectedItemsChange }) => {
   
   const [communities, setCommunities] = useState([]);
 
-  const onSelectedItemsChange = (selectedItems) => {
-    setSelectedItems(selectedItems);
-    console.log(selectedItems)
+  const handleSelectedItemsChange = (newSelectedItems) => {
+    onSelectedItemsChange(newSelectedItems);
   };
 
   const HOSTNAME = "http://localhost:1337";

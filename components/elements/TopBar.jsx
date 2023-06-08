@@ -44,12 +44,6 @@ export default function TopBar({ setLoggedInUser, icon, navigation }) {
   return (
     <View style={styles.menuContainer}>
     <View style={styles.topBar}>
-    
-      <TouchableOpacity>
-      {(navigationState.index === 0 || navigationState.index === 1)  && (
-        <MaterialIcons name={icon || "menu"} color={"#ffffff"} size={40} onPress={() => handleMenuPress(icon)}/>
-        )}
-      </TouchableOpacity>
       <Text style={styles.appTitle}>
         wine
         <Text style={[styles.appTitle, styles.boldText]}>moms</Text>

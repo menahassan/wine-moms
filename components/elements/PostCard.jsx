@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,19 +9,13 @@ import {
 } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import PostDetails from "../pages/PostDetails";
+import axios from "axios";
 
-export default function PostCard({ navigation, postInfo, loggedInUser }) {
-  // set image dimensions
-  const [dimensions, setDimensions] = useState([]);
+export default function PostCard({ navigation, postInfo, postId, loggedInUser }) {
 
-  // get mobile window dimensions
-  const win = Dimensions.get("window");
+  const [likedByUser, setLikedByUser] = useState(postInfo.likedByCurrentUser);
 
-  if (postInfo.image) {
-    Image.getSize(postInfo.imageLink, (width, height) => {
-      setDimensions([width, height]);
-    });
-  }
+  const HOSTNAME = "http://localhost:1337";
 
   var dateDifference =
     new Date().getTime() - new Date(postInfo.timestamp).getTime();
@@ -29,8 +23,31 @@ export default function PostCard({ navigation, postInfo, loggedInUser }) {
   var hoursAgo = Math.floor(dateDifference / (1000 * 60 * 60));
 
   const handlePostDetailsPress = () => {
-    navigation.navigate("PostDetails");
+    if (typeof(navigation) !== "undefined") {
+      navigation.navigate("PostDetails", {postInfo: postInfo});
+    }
   };
+
+  const handleLike = () => {
+    console.log(postId);
+    console.log(postInfo);
+    axios
+    .put(`${HOSTNAME}/api/posts/${postId}`, {
+      data: {
+        attributes: {
+          timestamp: new Date()
+        }
+      }
+    })
+    .then((response) => {
+      console.log("Post liked or unliked");
+    })
+    .catch((error) => {
+      console.log("An error occurred:", error.message);
+    });
+    setLikedByUser(prevLikedByUser => !prevLikedByUser); // Toggle the value of likedByUser
+  }
+
 
   return (
     <View style={styles.card}>
@@ -41,28 +58,12 @@ export default function PostCard({ navigation, postInfo, loggedInUser }) {
         moms
       </Text>
       <TouchableOpacity onPress={handlePostDetailsPress}>
-        {/*postInfo.image ? (
-        <></>
-      ) : (
+        {postInfo.image &&  postInfo.imageLink? (
         <Image
-          style={
-            dimensions == []
-              ? {
-                  margin: 0,
-                  padding: 0,
-                  width: win.width - 40,
-                  height: 0,
-                }
-              : {
-                  margin: 0,
-                  padding: 0,
-                  width: win.width - 40,
-                  height: dimensions[1] * ((win.width - 40) / dimensions[0]),
-                }
-          }
-          source={{ uri: postInfo.imageLink }}
+        style={styles.postImage}
+          source={{ uri: postInfo.imageLink.data ? `${HOSTNAME}${postInfo.imageLink.data.attributes.url}` : `${HOSTNAME}${postInfo.imageLink.url}` }}
         />
-        )*/}
+        ) : <></>}
         <View style={styles.row}>
           <Text style={styles.profile_pic}>
             {postInfo.anonymous
@@ -77,12 +78,13 @@ export default function PostCard({ navigation, postInfo, loggedInUser }) {
         </View>
         <Text style={styles.text}>{postInfo.description}</Text>
         <View style={styles.likeBar}>
-          {postInfo.likedByCurrentUser ? (
+          {likedByUser ? (
             <MaterialIcons
               style={styles.heartSpacing}
               name="favorite"
               color={"#ff4747"}
               size={22}
+              onPress={handleLike}
             />
           ) : (
             <MaterialIcons
@@ -90,6 +92,7 @@ export default function PostCard({ navigation, postInfo, loggedInUser }) {
               name="favorite-border"
               color={"#ff4747"}
               size={22}
+              onPress={handleLike}
             />
           )}
           <Text
@@ -157,5 +160,9 @@ const styles = StyleSheet.create({
   },
   boldText: {
     fontWeight: 600,
+  },
+  postImage: {
+    width: "100%",
+    height: 185,
   },
 });

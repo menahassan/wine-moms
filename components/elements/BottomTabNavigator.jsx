@@ -11,6 +11,7 @@ import Chat from "../pages/Chat";
 import CreatePost from "../pages/CreatePost";
 import CommunityPage from "../pages/CommunityPage";
 import CreateCommunity from  "../pages/CreateCommunity";
+import CommunitiesMenu from  "../pages/CommunitiesMenu";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -76,9 +77,9 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser, logged
           ),
         })}
       >
-        {() => <CreatePost setLoggedInUser={setLoggedInUser} loggedInUser = {loggedInUser}/>}
+        {() => <CreatePost navigation={navigation} setLoggedInUser={setLoggedInUser} loggedInUser = {loggedInUser}/>}
       </Tab.Screen>
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Chat"
         options={() => ({
           tabBarIcon: ({ color }) => (
@@ -86,8 +87,8 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser, logged
           ),
         })}
       >
-        {() => <Chat setLoggedInUser={setLoggedInUser} loggedInUser = {loggedInUser}/>}
-      </Tab.Screen>
+        {() => <Chat setLoggedInUser={setLoggedInUser} loggedInUser = {loggedInUser} navigation={navigation}/>}
+      </Tab.Screen> */}
       <Tab.Screen
         name="User Profile"
         options={() => ({
@@ -96,7 +97,33 @@ export default function BottomTabNavigator({ navigation, setLoggedInUser, logged
           ),
         })}
       >
-        {() => <UserProfile navigation={navigation} setLoggedInUser={setLoggedInUser} loggedInUser = {loggedInUser} />}
+          {() => (
+          <Stack.Navigator>
+            <Stack.Screen name="UserProfile" options={{ headerShown: false }}>
+              {() => (
+                <UserProfile navigation={navigation} setLoggedInUser={setLoggedInUser} loggedInUser = {loggedInUser} />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="CommunityPage" options={{ headerShown: false }}>
+              {() => (
+                <CommunityPage
+                  navigation={navigation}
+                  setLoggedInUser={setLoggedInUser}
+                  loggedInUser = {loggedInUser}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="CreateCommunity" options={{ headerShown: false }}>
+              {() => (
+                <CreateCommunity
+                  navigation={navigation}
+                  setLoggedInUser={setLoggedInUser}
+                  loggedInUser = {loggedInUser}
+                />
+              )}
+            </Stack.Screen>
+          </Stack.Navigator>
+        )}
       </Tab.Screen>
     </Tab.Navigator>
   );

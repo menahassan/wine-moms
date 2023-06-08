@@ -18,7 +18,8 @@ const LoginPage = ({ navigation, setLoggedInUser }) => {
       .then((response) => {
         //token is used to access data that only an authorized user can access
         //sets loggedInUser with user info and access token
-        setLoggedInUser({ user: response.data.user, token: response.data.jwt });
+        console.log(response.data);
+        setLoggedInUser(response.data);
       })
       .catch((error) => {
         console.log("An error occurred:", error.response);

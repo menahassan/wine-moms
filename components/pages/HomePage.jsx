@@ -40,7 +40,7 @@ export default function HomePage({ navigation, setLoggedInUser, loggedInUser }) 
           posts.map((post, index) => {
             return (
               <View key={index}>
-                <PostCard navigation={navigation} postInfo={post.attributes} loggedInUser={loggedInUser}></PostCard>
+                <PostCard navigation={navigation} postInfo={post.attributes} postId={post.id} loggedInUser={loggedInUser}></PostCard>
               </View>
             );
           })
