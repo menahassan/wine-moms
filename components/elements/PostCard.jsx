@@ -24,7 +24,7 @@ export default function PostCard({ navigation, postInfo, postId, loggedInUser })
 
   const handlePostDetailsPress = () => {
     if (typeof(navigation) !== "undefined") {
-      navigation.navigate("PostDetails", {postInfo: postInfo});
+      navigation.navigate("PostDetails", {postInfo: postInfo, postId: postId});
     }
   };
 

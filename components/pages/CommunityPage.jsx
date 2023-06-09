@@ -3,12 +3,16 @@ import TopBar from "../elements/TopBar";
 import PostCard from "../elements/PostCard";
 import { useEffect, useState } from "react";
 import EnclosedButton from "../elements/EnclosedButton";
+import { useRoute } from "@react-navigation/native";
 import axios from "axios";
 
-export default function CommunityPage({ navigation, setLoggedInUser, loggedInUser }) {
+export default function CommunityPage({ navigation, setLoggedInUser, loggedInUser}) {
   const [posts, setPosts] = useState({});
   const [communityInfo, setCommunityInfo] = useState({name: "", description: "", rules: ""});
   const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
+
+  const route = useRoute();
+  const { community_name } = route.params;
 
   const handleBack = () => {
     navigation.navigate("UserProfile");
@@ -42,27 +46,13 @@ export default function CommunityPage({ navigation, setLoggedInUser, loggedInUse
       .catch((error) => console.log(error.message));
 
       axios
-      .get(`${HOSTNAME}/api/posts?populate=*`)
+      .get(`${HOSTNAME}/api/communities?populate=*`)
       .then((response) => {
-        let postsArr = response.data.data;
-        for (let i = 0; i < postsArr.length; i++) {
-          let likedByCurrentUser = false;
-          for (
-            let j = 0;
-            j < postsArr[i].attributes.likedByUsers.data.length;
-            j++
-          ) {
-            if (
-              loggedInUser.user.id ===
-              postsArr[i].attributes.likedByUsers.data[j].id
-            ) {
-              likedByCurrentUser = true;
-              break;
-            }
-          }
-          postsArr[i].attributes["likedByCurrentUser"] = likedByCurrentUser;
-        }
-        setPosts(postsArr);
+        let array = response.data.data;
+        let community = array.find(obj => obj.attributes.Name === community_name);
+        console.log(community.attributes.coverPhoto.data.attributes.url);
+        setCommunityInfo(community.attributes);
+        console.log(communityInfo.coverPhoto.data.attributes.url);
       })
       .catch((error) => console.log(error.message));
   
@@ -74,25 +64,21 @@ export default function CommunityPage({ navigation, setLoggedInUser, loggedInUse
         setLoggedInUser={setLoggedInUser}
         navigation={navigation}
       ></TopBar>
+      {communityInfo && communityInfo.coverPhoto && (
       <Image
         style={styles.image}
-        source={require("../../assets/arizona_mom.jpeg")}
+        source={{ uri: communityInfo.coverPhoto.data.attributes.url }}
       />
+    )}
 
       <View style={styles.titlecard}>
         <Text style={styles.communityTitle}>
-          arizona
+          {communityInfo.Name}
           <Text style={[styles.communityTitle, styles.boldText]}>moms</Text>
         </Text>
         <Text style={styles.description}>
-          Welcome! arizonamoms is a community for moms located in Arizona. Here
-          are our community norms:
+        {communityInfo.communityGuidelines}
         </Text>
-        <Text style={styles.description}>
-          {" "}
-          - No discrimination or harassment
-        </Text>
-        <Text style={styles.description}> - Treat others with respect </Text>
       </View>
 
       <View>

@@ -4,7 +4,7 @@ import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 const CommunityButton = ({ navigation, title }) => {
   const handleClick = () => {
     // Eventually have invalid login logic
-    navigation.navigate("CommunityPage");
+    navigation.navigate("CommunityPage", {community_name: title});
   };
 
   return (

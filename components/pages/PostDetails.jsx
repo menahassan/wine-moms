@@ -1,4 +1,5 @@
-import { StyleSheet, Text, ScrollView, View, TextInput} from "react-native";
+import { StyleSheet, Text, ScrollView, View, TextInput } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import TopBar from "../elements/TopBar";
 import { NavigationContainer } from "@react-navigation/native";
 import EnclosedButton from "../elements/EnclosedButton";
@@ -12,23 +13,59 @@ export default function PostDetails({
   navigation,
   loggedInUser,
 }) {
+  const route = useRoute();
+  const { postInfo, postId } = route.params;
+  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
+  const [names, setNames] = useState([]);
+  const [comment, onChangeComment] = useState("");
+
   const handleBack = () => {
     navigation.navigate("Home");
   };
 
   const handlePost = () => {
-    navigation.navigate("Home");
-  };
+    axios
+      .post(`${HOSTNAME}/api/comments`, {
+        data: {
+          author: loggedInUser.user,
+          content: comment,
+          timestamp: new Date(),
+        },
+      })
+      .then((response) => {
+        let commentId = response.data.data.id;
 
-  const route = useRoute();
-  const { postInfo } = route.params;
-  const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
-  const [names, setNames] = useState([]);
-  const [comment, onChangeComment] = useState("");
+        axios
+          .get(`${HOSTNAME}/api/posts/${postId}?populate=comments`)
+          .then((response) => {
+            let commentsArray = response.data.data.attributes.comments.data;
+            const commentIds = commentsArray.map((comment) => comment.id);
+            const updatedComments = [...commentIds, commentId];
+            console.log(updatedComments);
+            axios
+              .put(`${HOSTNAME}/api/posts/${postId}?populate=comments`, {data: {
+                comments: updatedComments, // Concatenate the existing comment IDs with the new commentId
+          }})
+              .then((response) => {
+                console.log("Comment linked");
+                navigation.navigate("Home");
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log("An error occurred:", error.message);
+      });
+  };
 
   useEffect(() => {
     const comments = postInfo.comments.data;
-    const idList = comments.map(comment => comment.id);
+    const idList = comments.map((comment) => comment.id);
     const namesArray = [];
     const fetchNames = async () => {
       try {
@@ -57,18 +94,17 @@ export default function PostDetails({
 
   const getTimeStamp = (comment) => {
     var dateDifference =
-    new Date().getTime() - new Date(comment.attributes.timestamp).getTime();
-  var daysAgo = Math.floor(dateDifference / (1000 * 60 * 60 * 24));
-  var hoursAgo = Math.floor(dateDifference / (1000 * 60 * 60));
-  if (daysAgo > 0) {
-    return `Posted ${daysAgo} days ago`;
-  }
-  return `Posted ${hoursAgo} hours ago`;
-  
-  }
+      new Date().getTime() - new Date(comment.attributes.timestamp).getTime();
+    var daysAgo = Math.floor(dateDifference / (1000 * 60 * 60 * 24));
+    var hoursAgo = Math.floor(dateDifference / (1000 * 60 * 60));
+    if (daysAgo > 0) {
+      return `Posted ${daysAgo} days ago`;
+    }
+    return `Posted ${hoursAgo} hours ago`;
+  };
 
   return (
-    <ScrollView >
+    <KeyboardAwareScrollView>
       <TopBar
         setLoggedInUser={setLoggedInUser}
         icon="arrow-back-ios"
@@ -83,9 +119,7 @@ export default function PostDetails({
                 <Text style={styles.username}>
                   {postInfo.anonymous ? "Anonymous" : names[index]}
                 </Text>
-                <Text style={styles.timestamp}>
-                  {getTimeStamp(comment)}
-                </Text>
+                <Text style={styles.timestamp}>{getTimeStamp(comment)}</Text>
               </View>
               <Text style={styles.content}>
                 {comment.attributes.content
@@ -105,17 +139,17 @@ export default function PostDetails({
         <></>
       )}
       <View style={styles.container_two}>
-      <TextInput
-        autoCapitalize="none"
-        style={styles.input}
-        onChangeText={onChangeComment}
-        placeholder="Add a comment"
-        value={comment}
-      />
-       <EnclosedButton title="Post" onPress={handlePost}></EnclosedButton>
+        <TextInput
+          autoCapitalize="none"
+          style={styles.input}
+          onChangeText={onChangeComment}
+          placeholder="Add a comment"
+          value={comment}
+        />
+        <EnclosedButton title="Post" onPress={handlePost}></EnclosedButton>
       </View>
       <EnclosedButton title="Back" onPress={handleBack}></EnclosedButton>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -143,8 +177,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   container_two: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 20,
   },
   input: {

@@ -24,6 +24,11 @@ const RegisterPage = ({ setLoggedInUser }) => {
 
   const HOSTNAME = "https://shining-dogs-2af8207625.strapiapp.com";
 
+  const handleSelectedItemsChange = (newSelectedItems) => {
+    setSelectedItems(newSelectedItems);
+  };
+
+
   const handleRegister = () => {
     // send inputted data from user to database
     axios
@@ -101,9 +106,9 @@ const RegisterPage = ({ setLoggedInUser }) => {
             value={description}
           />
           <DropdownComponent
-            setSelectedItems={setSelectedItems}
-            selectedItems={selectedItems}
-          />
+          selectedItems={selectedItems}
+          onSelectedItemsChange={handleSelectedItemsChange}
+        />
           <EnclosedButton
             title="Register"
             onPress={handleRegister}
